@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Game Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .game-buttons {
+      margin: 30px auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #4a90e2;
+      color: white;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #357ab7;
+    }
+    iframe {
+      width: 80%;
+      height: 500px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin: 20px auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🎮 My Game Hub 🎮</h1>
+    <p>Click a button to play a game!</p>
+  </header>
+
+  <div class="game-buttons">
+    <button onclick="loadGame('game1.html')">Game 1</button>
+    <button onclick="loadGame('game2.html')">Game 2</button>
+    <button onclick="loadGame('game3.html')">Game 3</button>
+  </div>
+
+  <iframe id="gameFrame"></iframe>
+
+  <script>
+    function loadGame(gameFile) {
+      let frame = document.getElementById("gameFrame");
+      frame.src = gameFile;
+      frame.style.display = "block";
+    }
+  </script>
+</body>
+</html>
