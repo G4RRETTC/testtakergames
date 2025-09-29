@@ -4,82 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Drive Mad</title>
-<!-- Include your existing styles and Poki SDK scripts here -->
-<link rel="stylesheet" href="webapp/fancade.css">
-<script src="poki-sdk.js"></script>
-<script src="poki-sdk-core-v2.234.2.js" crossorigin="anonymous"></script>
-
 <style>
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-  }
-
-  #gameWrapper {
-    position: relative;
-    width: 885px;
-    height: 890px;
-    margin: 20px auto;
-  }
-
-  #fullscreenBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 9999;
-    padding: 8px 16px;
-    font-size: 14px;
-    cursor: pointer;
-  }
+  body, html { margin:0; padding:0; height:100%; background:#000; display:flex; flex-direction:column; align-items:center; }
+  #gameWrapper { position:relative; width:100%; max-width:885px; height:500px; margin:20px auto; }
+  #fullscreenBtn { position:absolute; top:10px; right:10px; z-index:999; padding:8px 16px; font-size:14px; cursor:pointer; }
+  iframe { width:100%; height:100%; border:none; }
 </style>
 </head>
-
 <body>
+
 <div id="gameWrapper">
   <button id="fullscreenBtn">Go Fullscreen</button>
-
-  <!-- Original game container -->
-  <div id="canvas_border" class="emscripten_border" style="margin-top: 0px;">
-    <div id="play_content" class="middle center" style="display: none;">
-      <div class="edge">
-        <div class="box">
-          <div class="black">
-            <img src="webapp/cover.jpg" class="cover">
-            <p class="title">Drive Mad</p>
-            <p class="author">Fancade</p>
-          </div>
-        </div>
-      </div>
-      <div id="progress_or_play">
-        <progress id="progress" class="loading" value="83" max="100"></progress>
-      </div>
-      <p class="description"></p>
-    </div>
-    <canvas class="emscripten" id="canvas" tabindex="-1" width="885" height="890"></canvas>
-    <div id="gradient" style="left:0; width:885px; height:890px; border-radius:0; display:none;"></div>
-    <div id="webview_content" style="left:0; width:885px; height:890px; border-radius:0;"></div>
-  </div>
-
+  <iframe src="https://cdn.jsdelivr.net/gh/genizy/dmad-poki@49b5ab6b987f5f3be58f9dae59c92e8fc1aab9b0/index.html" id="gameFrame"></iframe>
 </div>
-
-<script src="webapp/source_min.js"></script>
-<script src="webapp/index.js"></script>
 
 <script>
   const fsBtn = document.getElementById('fullscreenBtn');
   const gameWrapper = document.getElementById('gameWrapper');
-
   fsBtn.addEventListener('click', () => {
-    if (gameWrapper.requestFullscreen) {
-      gameWrapper.requestFullscreen();
-    } else if (gameWrapper.webkitRequestFullscreen) { /* Safari */
-      gameWrapper.webkitRequestFullscreen();
-    } else if (gameWrapper.msRequestFullscreen) { /* IE11 */
-      gameWrapper.msRequestFullscreen();
-    }
+    if (gameWrapper.requestFullscreen) gameWrapper.requestFullscreen();
+    else if (gameWrapper.webkitRequestFullscreen) gameWrapper.webkitRequestFullscreen();
+    else if (gameWrapper.msRequestFullscreen) gameWrapper.msRequestFullscreen();
   });
 </script>
 
